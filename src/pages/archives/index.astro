@@ -63,8 +63,10 @@ const MonthMap: Record<string, string> = {
                     {monthGroup
                       .sort(
                         (postA, postB) =>
-                          postB.data.pubDatetime.getTime() -
-                          postA.data.pubDatetime.getTime()
+                          postB.data.pubDatetime.getTime() ??
+                          Number.MAX_SAFE_INTEGER -
+                            postA.data.pubDatetime.getTime() ??
+                          Number.MIN_SAFE_INTEGER
                       )
                       .map(({ data, slug }) => (
                         <Card href={`/posts/${slug}`} frontmatter={data} />

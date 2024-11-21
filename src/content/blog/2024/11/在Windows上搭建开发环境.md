@@ -2,7 +2,7 @@
 author: yshhuang
 pubDatetime: 2024-11-15
 title: 在Windows上搭建开发环境
-featured: true
+featured: false
 draft: false
 tags:
   - 开发环境
@@ -46,14 +46,50 @@ set completion-ignore-case on
 
 ### VSCode
 
+#### 插件
+
+[VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons):我个人最喜欢的一套文件图标。
+
+[Dracula Theme Official](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula)：鼎鼎大名的德古拉主题配色，支持多种编辑器和shell。
+
+[Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced):功能非常强大的Markdown增强插件,支持幻灯片、电子书、LaTeX……
+
+[background](https://marketplace.visualstudio.com/items?itemName=shalldie.background)：自定义VSCode的背景图片。
+
+#### 设置
+
+Windows下的配置文件位于`~/AppData/Roaming/Code/User/settings.json`。
+
+```json
+// 编辑器字体大小
+"editor.fontSize": 16,
+// 终端模拟器的字体大小
+"terminal.integrated.fontSize": 16,
+// 整个软件的缩放,可以放大侧栏的文字
+"window.zoomLevel": 0.4,
+// 无障碍支持,开启后会多很多提示音,直接关掉即可
+"editor.accessibilitySupport": "off",
+// 如果不想关闭无障碍支持,可以通过这个设置关闭提示音
+"accessibility.signalOptions.volume": 0,
+// 关闭编辑器右侧的缩略图
+"editor.minimap.enabled": false,
+// 设置默认的shell
+"terminal.integrated.defaultProfile.windows": "Git Bash",
+```
+
 ### 微信输入法
 
+之前用了好多年的搜狗输入法，非常喜欢它可以展示多行候选词的功能，后来不知道哪次更新把这个功能去掉了，而且各种乱七八糟的工具都被捆绑到输入法里面，看着十分讨厌。后来发现微信也做了一个输入法，完美满足我的需求，所以就切换到了微信输入法。
+
 ### 系统字体
+
+Windows系统默认的字体太糟糕了，使用[MacType](https://www.mactype.net/)进行修改，可以在Windows上获得接近Mac的字体体验。
 
 ### Nodejs
 
 ## WSL开发环境
 
 ------------
+*参考资料:*
 [^1]:[Shell、Bash、CMD、PowerShell 的区别](https://blog.csdn.net/qq_33154343/article/details/123366377)
 [^2]:[Windows下的Git Bash配置，提升你的终端操作体验](https://zhuanlan.zhihu.com/p/418321777)
