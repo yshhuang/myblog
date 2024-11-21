@@ -58,10 +58,17 @@ const MonthMap: Record<string, string> = {
                     <span class="font-bold">{MonthMap[month]}</span>
                     <sup class="text-xs">{monthGroup.length}</sup>
                   </div>
+
                   <ul>
-                    {monthGroup.map(({ data, slug }) => (
-                      <Card href={`/posts/${slug}`} frontmatter={data} />
-                    ))}
+                    {monthGroup
+                      .sort(
+                        (postA, postB) =>
+                          postB.data.pubDatetime.getTime() -
+                          postA.data.pubDatetime.getTime()
+                      )
+                      .map(({ data, slug }) => (
+                        <Card href={`/posts/${slug}`} frontmatter={data} />
+                      ))}
                   </ul>
                 </div>
               ))}
