@@ -95,7 +95,7 @@ Windows系统默认的字体太糟糕了，使用[MacType](https://www.mactype.n
 
 `nodejs`版本更新比较频繁，而且很多项目可能依赖不同的`nodejs`版本，所以使用版本管理工具来安装`nodejs`就很有必要。在所有的`nodejs`版本管理工具中，`fnm`（Fast Node Manager）因其快速、跨平台的特性而大受欢迎。根据[nodejs官网的指示](https://nodejs.org/en/download/package-manager)，在`PowerShell`环境中下载安装：
 
-```bash
+```powershell
   1. winget install Schniz.fnm
   2. fnm env --use-on-cd | Out-String | Invoke-Expression
 ```
@@ -111,10 +111,55 @@ Windows系统默认的字体太糟糕了，使用[MacType](https://www.mactype.n
 eval "$(fnm env --use-on-cd)"
 ```
 
+#### 安装nodejs
+
+安装完成`fnm`后就可以用它来安装`nodejs`了，常用命令如下：
+
+```bash
+# 查看所有远程可供安装的 Node 版本
+fnm list-remote
+# 安装某一 Node 版本
+fnm install <version>
+# 切换某一 Node 版本
+fnm use <version>
+# 查看当前使用的 Node 版本
+fnm current
+# 查看所有已安装的 Node 版本
+fnm list
+# 删除某一 Node 版本
+fnm uninstall <version>
+# 设置默认版本
+fnm default <version>
+# 设置 Node 版本别名
+fnm alias <version> <alias>
+# 移除 Node 版本别名
+fnm unalias <alias>
+```
+
 ## WSL开发环境
 
+### 安装WSL
+
+在`Windows`上搭建本地开发环境主要是为了以后需要开发`Windows`桌面软件的需要，其他场景还是使用`VSCode`连接`WSL`在`Linux`中开发体验更好，遇到的环境相关问题也更少。`WSL`的安装参考微软的[官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/install)即可,有的系统可能需要先启用“适用于 Linux 的 Windows 子系统”的功能，具体步骤可以参考[旧版的安装文档](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual)。安装的时候需要下载`GitHub`上的文件，因为众所周知的原因，`GitHub`在国内访问不稳定，可能下载失败，所以下载时需要用到`VPN`或者加速器。
+
+可能是因为我在Windows下使用了[Watt Toolkit](https://steampp.net/)，安装好`WSL`之后，在自动生成的DNS配置文件`/etc/resolv.conf`里面，把`GitHub`的域名解析到了`127.0.0.1`，导致在`WSL`中无法连接`GitHub`。解决方案是删除`/etc/resolv.conf`里面除nameserver之外的配置，并且在`/etc/wsl.conf`中添加如下内容：
+
+```conf
+[network]
+generateResolvConf = false
+```
+
+### Windows和WSL的互操作
+
+  1. 在Windows命令行运行Linux工具：
+    使用 wsl <command>（或 wsl.exe <command>）从 Windows 命令提示符 (CMD) 或 PowerShell 运行 Linux 二进制文件。
+  2. 在WSL运行WIndows工具：
+    如果对应的Windows 工具在环境变量中，那么在WSL输入即可直接启动Windows 工具，例如通过git.exe运行git命令。如果可执行程序（exe）文件不在Windows的环境变量中，可以通过/mnt/{文件在Windows下路径}启动exe文件。或者可以通过cd命令进入/mnt/{文件在Windows下路径}，执行./exe文件。如果发现无法启动的情况，那么极有可能是权限不够，可以通过管理员权限运行WSL，再启动exe文件。[^4]
+  
 ------------
+
 *参考资料:*
 [^1]:[Shell、Bash、CMD、PowerShell 的区别](https://blog.csdn.net/qq_33154343/article/details/123366377)
 [^2]:[Windows下的Git Bash配置，提升你的终端操作体验](https://zhuanlan.zhihu.com/p/418321777)
 [^3]:[Node.JS 版本管理工具 Fnm 安装及配置（Windows）](https://blog.csdn.net/Y2ANGAO/article/details/142653309)
+[^4]:[玩转WSL 2(四)——Windows 与 Linux 的互操作性（命令交互）](https://blog.csdn.net/Caoyang_He/article/details/107899445)
