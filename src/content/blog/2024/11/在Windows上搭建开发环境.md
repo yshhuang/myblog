@@ -161,5 +161,5 @@ generateResolvConf = false
 *参考资料:*
 [^1]:[Shell、Bash、CMD、PowerShell 的区别](https://blog.csdn.net/qq_33154343/article/details/123366377)
 [^2]:[Windows下的Git Bash配置，提升你的终端操作体验](https://zhuanlan.zhihu.com/p/418321777)
-[^3]:[Node.JS 版本管理工具 Fnm 安装及配置（Windows）](https://blog.csdn.net/Y2ANGAO/article/details/142653309)
+[^3]:[Windows使用NodeJS版本管理工具fnm](https://blog.csdn.net/Helen_T/article/details/135912916)
 [^4]:[玩转WSL 2(四)——Windows 与 Linux 的互操作性（命令交互）](https://blog.csdn.net/Caoyang_He/article/details/107899445)
